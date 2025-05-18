@@ -20,3 +20,4 @@ C:\Users\Hugod\Desktop\Codificaciones\obj\Debug\net8.0-windows\Codificaciones.Fo
 C:\Users\Hugod\Desktop\Codificaciones\obj\Debug\net8.0-windows\Codificaciones.Form5.resources
 C:\Users\Hugod\Desktop\Codificaciones\obj\Debug\net8.0-windows\Codificaciones.Form6.resources
 C:\Users\Hugod\Desktop\Codificaciones\obj\Debug\net8.0-windows\Codificaciones.Form7.resources
+C:\Users\Hugod\Desktop\Codificaciones\obj\Debug\net8.0-windows\Codificaciones.sourcelink.json

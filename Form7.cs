@@ -18,19 +18,6 @@ namespace Codificaciones
         public Form7()
         {
             InitializeComponent();
-            /*Bitmap bmp = new Bitmap(this.panelCodi.Width, this.panelCodi.Height);
-            using (Graphics g = Graphics.FromImage(bmp))
-            {
-                g.Clear(Color.White);
-                g.DrawLine(Pens.Cyan, 10, 50, this.panelCodi.Width, 50);
-                g.DrawLine(Pens.Cyan, 10, 100, this.panelCodi.Width, 100);
-                g.DrawLine(Pens.Cyan, 10, 150, this.panelCodi.Width, 150);
-            }
-            panelCodi.Controls.Clear();
-            PictureBox pb = new PictureBox();
-            pb.Image = bmp;
-            pb.SizeMode = PictureBoxSizeMode.AutoSize;
-            panelCodi.Controls.Add(pb);*/
         }
 
         private void btnEnter_Click(object sender, EventArgs e)
@@ -74,6 +61,7 @@ namespace Codificaciones
         private void Diferencial(Graphics g, string bits)
         {
             bool ban = true;
+            bool ban2 = true;
 
             int x = 10;
             int bit1 = 50;
@@ -93,7 +81,7 @@ namespace Codificaciones
                 bitPrev = bit1;
                 bitContr = bit0;
             }
-            
+
             g.DrawLine(Pens.Black, x, bitPrev, x + ancho, bitPrev);
             g.DrawLine(Pens.Black, x + ancho, bitPrev, x + ancho, bitContr);
             g.DrawLine(Pens.Black, x + ancho, bitContr, x + (ancho * 2), bitContr);
@@ -120,16 +108,42 @@ namespace Codificaciones
                 }
                 else
                 {
-                    bitAct = bit1;
-                    aux = bit0;
+                    if (bits[i-1] == '1')
+                    {
+                        if (bitPrev == bit0)
+                        {
+                            bitAct = bit0;
+                            aux = bit1;
+                            ban2 = false;
+                        }
+                        else
+                        {
+                            bitAct = bit1;
+                            aux = bit0;
+                            ban2 = true;
+                        }
+                    }
+                    else
+                    {
+                        if (ban2)
+                        {
+                            bitAct = bit1;
+                            aux = bit0;
+                        }
+                        else
+                        {
+                            bitAct = bit0;
+                            aux = bit1;
+                        }
+                    }
                 }
-                if (bitAct == bitPrev)
+                if (bits[i] == '0')
                 {
                     g.DrawLine(Pens.Black, x, bit1, x, bit0);
                 }
-                g.DrawLine(Pens.Black, x, bitAct, x + ancho, bitAct);
-                g.DrawLine(Pens.Black, x + ancho, bit1, x + ancho, bit0);
-                g.DrawLine(Pens.Black, x + ancho, aux, x + (ancho * 2), aux);
+                g.DrawLine(Pens.Black, x, bitAct, x + ancho, bitAct);           //horizontal
+                g.DrawLine(Pens.Black, x + ancho, bit1, x + ancho, bit0);       //vertical
+                g.DrawLine(Pens.Black, x + ancho, aux, x + (ancho * 2), aux);   //horizontal
 
                 bitPrev = bitAct;
                 x += (ancho * 2);
